@@ -1,5 +1,5 @@
 <template>
-    <div @click="showMenu()" class=" border-right cell "
+    <div @click="showMenu()" class=" border-left cell flex-fill "
         :class="active ? 'active':''" role="button">
         <div class="btn-grou ">
             <span
@@ -65,7 +65,7 @@ export default {
 
 <style scoped>
 .cell{
-    max-width: 35px;
+    /* max-width: 35px; */
     min-width: 35px;
 }
 .menu{
