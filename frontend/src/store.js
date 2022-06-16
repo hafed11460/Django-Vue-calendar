@@ -23,7 +23,8 @@ export default new Vuex.Store({
       {color:'warning',name:'event'},
       {color:'dark',name:'event'},
     ],
-    monthNames :["January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December"],
+    monthNames :["January", "February", "March", "April", "May", "June",
+                "July", "August", "September", "October", "November", "December"],
     sources:[],
     currentDate:''
   },
@@ -80,7 +81,26 @@ export default new Vuex.Store({
         commit('SET_NEW_SOURCE',res.data)
         return true;
       }catch(err){
-        console.log('createEmployee error', err.response.data)
+        console.log('Error To create source', err.response.data)
+      }
+    },
+    async updateSource({commit}, source){
+      try{
+        const res = await jwtInterceptor.put(`/sources/${source.id}/update/`,source)
+          commit('UPDATE_SOURCE',res.data)
+        return true;
+      }catch(err){
+        console.log('Error update Source', err.response.data)
+      }
+    },
+
+    async deleteSource({commit}, id){
+      try{
+        await jwtInterceptor.delete(`/sources/${id}/delete/`)
+        commit('DELETE_SOURCE',id)
+        return true;
+      }catch(err){
+        console.log('Error Delete Source ', err.response.data)
       }
     },
 
@@ -117,6 +137,14 @@ export default new Vuex.Store({
             state.sources.splice(index, 1,source)
           }
       }
-  },
+    },
+    DELETE_SOURCE(state,id){
+      for (let index = 0; index < state.sources.length; index++) {
+        const element = state.sources[index];
+        if(element.id === id){
+            state.sources.splice(index, 1)
+          }
+      }
+    },
   }
 });

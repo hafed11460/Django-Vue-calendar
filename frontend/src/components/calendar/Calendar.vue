@@ -5,9 +5,9 @@
             <li class="nav-item">
                 <a  @click="currentTab='YearView'" class="nav-link btn btn-primary rounded-0" >Year View</a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <a @click="currentTab='HorizontView'" class="nav-link btn btn-success rounded-0">Horizonta view </a>
-            </li>
+            </li> -->
         </ul>
     </div>
     <component v-bind:is="currentTabComponent" ></component>
@@ -16,13 +16,13 @@
 
 <script>
 import YearView from './YearView.vue'
-import HorizontView from './HorizontView.vue'
+// import HorizontView from './HorizontView.vue'
 
 export default {
   name: 'Calendar',
   components: {
     YearView,
-    HorizontView
+    // HorizontView
   },
   data(){
         return{

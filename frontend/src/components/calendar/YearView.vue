@@ -2,7 +2,7 @@
     <div>
          <div class="border border-bottom-0 m-2">
 
-            <div class="d-flex flex-column" >
+            <div class="d-flex flex-column mb-3 bg-light" >
                 <div class="d-flex flex-row ">
                     <!-- Create new Source  -->
                     <div class="col-employee   border-bottom">
@@ -19,13 +19,16 @@
                 </div>
             </div>
             <!-- Source Row  -->
-            <SourceRow v-for="(source,index) in getSourcesList "
+            <div class="border-top">
+
+                <SourceRow v-for="(source,index) in getSourcesList "
                 :key="index"
                 :source="source"
                 :daysCount="daysCount"
                 :month="currentMonth"
                 :year="currentYear"
             />
+            </div>
         </div>
     </div>
 </template>

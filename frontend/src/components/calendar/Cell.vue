@@ -105,9 +105,9 @@ export default {
     min-width: 150px;
     max-width: 250px;
 }
-.active{
+/* .active{
     background-color: rgba(66, 85, 194, 0.801);
-}
+} */
 .hour-cell{
     width:5%;
 }
