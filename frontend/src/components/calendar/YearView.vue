@@ -1,7 +1,13 @@
 <template>
     <div>
+         <div class="p-2">
+      <ul class="nav justify-content-end">
+        <li @click="defaultMonth()" class="nav-item">
+          <a class="nav-link btn btn-outline-info rounded-0">Current month</a>
+        </li>
+      </ul>
+    </div>
          <div class="border border-bottom-0 m-2">
-
             <div class="d-flex flex-column mb-3 bg-light" >
                 <div class="d-flex flex-row ">
                     <!-- Create new Source  -->

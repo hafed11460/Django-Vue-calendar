@@ -2,16 +2,30 @@
 from rest_framework.serializers import ModelSerializer,SerializerMethodField
 from source.models import Source,Event
 from datetime import datetime,timedelta
+from rest_framework import serializers
 
 class CreateEventSerializer(ModelSerializer):
     class Meta:
         model = Event
         fields = ['date', 'source', 'color']
 
-class EventSerializer(ModelSerializer):
+class CreateEventSerializer(ModelSerializer):
     class Meta:
         model = Event
         fields = ['id', 'source', 'date', 'color']
+
+
+
+class EventSerializer(ModelSerializer):
+    state = serializers.SerializerMethodField()
+    visible = serializers.BooleanField(default=True)
+    origin = serializers.BooleanField(default=True)
+    class Meta:
+        model = Event
+        fields = ['id', 'source', 'date', 'color','state','visible', 'origin']
+
+    def get_state(self, obj):
+        return ''
 
 
 class CreateSourceSerializer(ModelSerializer):

@@ -8,6 +8,7 @@ class IsSourceOwner(BasePermission):
             return True
         return False
 
+
 class IsEventOwner(BasePermission):
     def has_object_permission(self, request, view, event):
         if event.source.user == request.user:

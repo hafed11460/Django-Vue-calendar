@@ -3,7 +3,7 @@
         <span @click="showForm()" class=" btn btn-sm btn-info d-block border" role="button">
             <i class="fas  fa-lg fa-pen"></i></span>
         <div v-show="showfrom" class="" >
-        <form @submit.prevent="createSource()">
+        <form @submit.prevent="editSource()">
             <div class=" position-absolute p-2 py-1 bg-white  border shadow" >
                 <div class="modal-dialog modal-md my-0">
                     <div class="modal-content">
@@ -63,7 +63,7 @@ import { mapActions, mapGetters } from 'vuex'
             showForm(){
                 this.showfrom = !this.showfrom
             },
-            async createSource(){
+            async editSource(){
                 const data = {
                         id:this.source.id,
                         name:this.source.name,
@@ -71,7 +71,6 @@ import { mapActions, mapGetters } from 'vuex'
                     }
                 if(await this.actionUpdateSource(data)){
                     this.showfrom = !this.showfrom
-                    // this.initForm()
                 }
             },
             async removeSource(){
@@ -80,7 +79,6 @@ import { mapActions, mapGetters } from 'vuex'
                 if (r == true) {
                 if(await this.actionDeleteSource(this.source.id)){
                     this.showfrom = !this.showfrom
-                    // this.initForm()
                 }
                 }
             },
