@@ -25,12 +25,13 @@ def createExcelFile(date):
         'valign': 'vcenter',
         'fg_color': '#F5F5F5'})
 
-    employeeCell = workbook.add_format({
+    sourceCell = workbook.add_format({
         'bold': 1,
         'border': 1,
         'align': 'center',
         'valign': 'vcenter',
-        'fg_color': '#F5F5F5'})
+        'fg_color': '#F5F5F5',
+        })
 
     row = 4
     col = 0
@@ -40,13 +41,12 @@ def createExcelFile(date):
 
     worksheet.write(3, col, 'Source Name',headerCell)
     col = 1
-
-    sickIndex = col
-
     ## end header ############
+
     col = 0
     row = 4
     sources = Source.objects.filter(user=1)
+    cellColor = ['#A52A2A','#7FFF00','#6495ED','#00FFFF','#B8860B','#006400','#483D8B']
     dt = datetime.strptime(date, '%Y-%m-%d')
     for source in sources:
         events = Event.objects.filter(
@@ -55,13 +55,26 @@ def createExcelFile(date):
                         date__month__gte=dt.month,
                         date__year__lte=dt.year,
                         date__month__lte=dt.month)
-        worksheet.write(row, col, source.name ,employeeCell)
+        worksheet.write(row, col, source.name ,sourceCell)
         col +=1
         for day in range(1,daysInMonth+1):
+
+            cell_format = workbook.add_format()
             if events.filter(date__day__exact=day).exists():
-                worksheet.write(row, col, str(day) ,employeeCell)
+                event = events.filter(date__day__exact=day).first()
+                cell_format = workbook.add_format({
+                    'bold': 1,
+                    'border': 1,
+                    'align': 'center',
+                    'valign': 'vcenter',
+                    'fg_color': '#F5F5F5',
+                    'bg_color': '#7FFF00',
+                    })
+                print(cellColor[event.color])
+                cell_format.set_bg_color(cellColor[event.color])
+                worksheet.write(row, col, str(day) ,cell_format)
             else:
-                worksheet.write(row, col,'' ,employeeCell)
+                worksheet.write(row, col,'' ,sourceCell)
 
             col +=1
         col = 0
