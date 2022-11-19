@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
@@ -25,9 +26,9 @@ SECRET_KEY = '%m)at7@e0i%lgj_6^23svi0e_(o$swexbs24u63c^z!w4qhi^@'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
-
+APPEND_SLASH  = True
 # Application definition
 
 INSTALLED_APPS = [
@@ -38,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'source',
+    'products',
+    'payments',
 
     'rest_framework',
     "corsheaders",
@@ -72,7 +75,7 @@ ROOT_URLCONF = 'project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -140,3 +143,14 @@ STATIC_URL = '/static/'
 BASE_DIR = 'http://127.0.0.1/'
 
 BASE_URL = "http://127.0.0.1:8000/"
+
+
+# PAYMOB_API_KEY = os.environ.get('PAYMOB_API_KEY')
+# PAYMOB_API_HMAC = os.environ.get('PAYMOB_API_HMAC')
+PAYMOB_API_KEY = "ZXlKMGVYQWlPaUpLVjFRaUxDSmhiR2NpT2lKSVV6VXhNaUo5LmV5SmpiR0Z6Y3lJNklrMWxjbU5vWVc1MElpd2ljSEp2Wm1sc1pWOXdheUk2TlRrd01EYzVMQ0p1WVcxbElqb2lhVzVwZEdsaGJDSjkuT1hCbVI0ekpjOW1rYkpEQzc1MW9USWZ6Wnd3WURLZDdKcFFKanJra0o2S210UVRJbmo5V2hyOXV2U3RWbXM2ZW5zQUJQMjlZRzRRbHZPMlFXWUxlWWc="
+PAYMOB_API_HMAC = "ACCCF5A2DE6A9C04E1E2E865D42B26FE"
+INTEGRATION_ID = "2988574"
+
+# print(PAYMOB_API_KEY)
+
+visa = 4987654321098769
