@@ -10,7 +10,7 @@
     {% for package in packages %}
     <div class="col">
       <div class="card h-100 py-3">
-      <form action= {% url 'payment' package.id %}  method='POST'>
+      <form action= {% url 'payments:pay' package.id %}  method='POST'>
         {% csrf_token %}
           <input type='hidden' name='product_id' value="{{package.id}}">
           <div class="card-body text-center">

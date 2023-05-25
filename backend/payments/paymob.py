@@ -1,5 +1,5 @@
-from accept.payment import *
-from django.views.generic.base import TemplateView
+# from accept.payment import *
+from payments.PaymobServices import *
 from project import settings
 
 class Paymob:
@@ -7,6 +7,7 @@ class Paymob:
     def __init__(self, data):
         self.accept =  AcceptAPI(settings.PAYMOB_API_KEY)
         self.data = data
+        self.orderData = None
     def getAuthToken(self):
         return self.accept.retrieve_auth_token()
 
@@ -23,6 +24,8 @@ class Paymob:
     def getPaymentToken(self):
         auth_token = self.getAuthToken()
         order = self.order(auth_token)
+        self.orderData = order
+        print(order)
         Request = {
             "auth_token": auth_token,
             "amount_cents": self.data.get('product_amount'),

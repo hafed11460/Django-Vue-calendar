@@ -8,9 +8,9 @@ class Product (models.Model):
     def __str__(self):
         return self.name
 
-
 class PackageFeature(models.Model):
     title = models.CharField(max_length=100)
+
 
 class Package(models.Model):
     name = models.CharField(max_length=100, unique=True)
